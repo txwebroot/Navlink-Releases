@@ -28,7 +28,7 @@ services:
       DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD}
 
       # 插件商城配置
-      # PLUGIN_REGISTRY_TOKEN: ${PLUGIN_REGISTRY_TOKEN:-}
+      # (公共仓库不需要配置 Token)
 
       # Redis Configuration
       REDIS_ENABLED: ${REDIS_ENABLED}
@@ -60,11 +60,7 @@ services:
     # 部署说明
     # ========================================
     #
-    # 1. (可选) 登录 GitHub Container Registry：
-    #    公共镜像不需要登录即可拉取。如果拉取私有镜像才需要：
-    #    echo YOUR_GITHUB_TOKEN | docker login ghcr.io -u txwebroot --password-stdin
-    #
-    # 2. 拉取镜像：
+    # 1. 拉取镜像 (公共镜像无需登录)：
     #    docker-compose pull
     #
     # 3. 启动服务：
