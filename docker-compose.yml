@@ -1,7 +1,7 @@
 services:
   navlink:
-    # 使用 GitHub Container Registry 镜像
-    image: ghcr.io/txwebroot/navlink:latest
+    # 使用 GitHub Container Registry 镜像 (公共发布版)
+    image: ghcr.io/txwebroot/navlink-releases:latest
     container_name: navlink-app
     restart: unless-stopped
 
