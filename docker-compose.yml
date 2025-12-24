@@ -1,7 +1,6 @@
 services:
   navlink:
     # 使用 GitHub Container Registry 镜像
-    # 公共镜像可以直接拉取，无需登录
     image: ghcr.io/txwebroot/navlink:latest
     container_name: navlink-app
     restart: unless-stopped
@@ -27,9 +26,6 @@ services:
       DEFAULT_ADMIN_USERNAME: ${DEFAULT_ADMIN_USERNAME}
       DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD}
 
-      # 插件商城配置
-      # (公共仓库不需要配置 Token)
-
       # Redis Configuration
       REDIS_ENABLED: ${REDIS_ENABLED}
       REDIS_HOST: ${REDIS_HOST}
@@ -47,7 +43,6 @@ services:
       - ./plugins:/app/plugins
       - ./logs:/app/logs
       # Docker socket挂载 - 允许Docker插件管理宿主机Docker
-      # ⚠️ 安全警告：这会给容器完全的Docker控制权限
       - /var/run/docker.sock:/var/run/docker.sock
 
   redis:
