@@ -1,0 +1,82 @@
+services:
+  navlink:
+    # 使用 GitHub Container Registry 镜像
+    # 公共镜像可以直接拉取，无需登录
+    image: ghcr.io/txwebroot/navlink:latest
+    container_name: navlink-app
+    restart: unless-stopped
+
+    # 加载 .env 文件中的环境变量
+    env_file:
+      - .env
+
+    ports:
+      - "8000:${PORT}"
+
+    environment:
+      # 核心配置
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+
+      # 安全密钥
+      JWT_SECRET: ${JWT_SECRET}
+      SESSION_SECRET: ${SESSION_SECRET}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+
+      # 默认管理员账号
+      DEFAULT_ADMIN_USERNAME: ${DEFAULT_ADMIN_USERNAME}
+      DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD}
+
+      # 插件商城配置
+      # PLUGIN_REGISTRY_TOKEN: ${PLUGIN_REGISTRY_TOKEN:-}
+
+      # Redis Configuration
+      REDIS_ENABLED: ${REDIS_ENABLED}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+
+      # Backup Configuration
+      BACKUP_ENABLED: ${BACKUP_ENABLED}
+      BACKUP_SCHEDULE: ${BACKUP_SCHEDULE}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS}
+      BACKUP_PATH: ${BACKUP_PATH}
+
+    volumes:
+      # 持久化数据存储在当前目录
+      - ./data:/app/data
+      - ./plugins:/app/plugins
+      - ./logs:/app/logs
+      # Docker socket挂载 - 允许Docker插件管理宿主机Docker
+      # ⚠️ 安全警告：这会给容器完全的Docker控制权限
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  redis:
+    image: redis:alpine
+    container_name: navlink-redis
+    restart: unless-stopped
+    volumes:
+      - ./redis_data:/data
+    # ========================================
+    # 部署说明
+    # ========================================
+    #
+    # 1. (可选) 登录 GitHub Container Registry：
+    #    公共镜像不需要登录即可拉取。如果拉取私有镜像才需要：
+    #    echo YOUR_GITHUB_TOKEN | docker login ghcr.io -u txwebroot --password-stdin
+    #
+    # 2. 拉取镜像：
+    #    docker-compose pull
+    #
+    # 3. 启动服务：
+    #    docker-compose up -d
+    #
+    # 4. 访问应用：
+    #    http://localhost:3001
+    #
+    # 5. 默认账号：
+    #    用户名: admin
+    #    密码: admin123
+    #
+    # ⚠️ 安全提示：
+    # - 首次登录后请立即修改管理员密码
+    # - 建议在生产环境中修改 .env 中的 JWT_SECRET 等密钥
