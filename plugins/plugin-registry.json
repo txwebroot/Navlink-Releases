@@ -32,6 +32,17 @@
             "icon": "🚀",
             "downloadUrl": "https://raw.githubusercontent.com/txwebroot/Navlink-Releases/main/plugins/vps-2.0.0.zip",
             "homepage": "https://github.com/txwebroot/Navlink-Releases"
+        },
+        {
+            "id": "kbrag",
+            "name": "本地知识库 (RAG)",
+            "version": "2.0.0",
+            "description": "基于RAG技术的本地知识库，支持网页保存和AI增强检索",
+            "author": "NavLink Team",
+            "category": "Productivity",
+            "icon": "📚",
+            "downloadUrl": "https://raw.githubusercontent.com/txwebroot/Navlink-Releases/main/plugins/kbrag-2.0.0.zip",
+            "homepage": "https://github.com/txwebroot/Navlink-Releases"
         }
     ]
 }
