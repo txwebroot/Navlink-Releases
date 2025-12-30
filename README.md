@@ -1,3 +1,5 @@
+# 更详细说明：www.webxx.top
+
 # NavLink 安装指南（Docker 镜像版）
 
 ## 🚀 快速开始
