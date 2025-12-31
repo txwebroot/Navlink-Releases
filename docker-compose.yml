@@ -64,7 +64,7 @@ services:
     #    docker-compose up -d
     #
     # 4. 访问应用：
-    #    http://localhost:3001
+    #    http://localhost:8000
     #
     # 5. 默认账号：
     #    用户名: admin
