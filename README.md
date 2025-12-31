@@ -52,8 +52,8 @@ docker-compose up -d
 
 ## 💻 访问应用
 
-- **主页**: http://localhost:3001
-- **管理后台**: http://localhost:3001/admin
+- **主页**: http://localhost:8000
+- **管理后台**: http://localhost:8000/admin
 - **默认账号**: admin / admin123
 
 > ⚠️ **重要**：首次登录后请立即修改管理员密码！生产环境请修改 `.env` 中的密钥。
